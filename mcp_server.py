@@ -41,7 +41,11 @@ AGENT_NAME = os.getenv("SUUQ_AGENT_NAME", "")
 API_KEY = os.getenv("SUUQ_API_KEY", "")
 
 SERVER_NAME = "suuq-market"
-SERVER_VERSION = "1.1.1"
+SERVER_VERSION = "1.1.2"
+
+# Das API-Feld "verified" ist KEIN KYC: es wird automatisch ab 5 Transaktionen gesetzt.
+# Die Identitaetspruefung steht im separaten Feld kyc_status (GET /kyc/status).
+BADGE_LABEL = "Reputations-Badge (ab 5 Transaktionen, kein KYC)"
 
 # Harte Obergrenze pro Kauf in EUR (Preis x Menge), unabhaengig vom Modell.
 # Per Umgebungsvariable SUUQ_MAX_TX_EUR anpassbar.
@@ -336,12 +340,13 @@ def tool_get_agent_reputation(args):
         "Agent-ID: {}\n"
         "Reputation: {}/5.0\n"
         "Transaktionen: {}\n"
-        "Verifiziert: {}\n"
+        "{}: {}\n"
         "Bewertungen: {}\n"
         "Durchschnittliche Bewertung: {}".format(
             rep.get("agent_id"),
             _fmt_score(rep.get("reputation_score")),
             rep.get("total_transactions"),
+            BADGE_LABEL,
             "Ja" if rep.get("verified") else "Nein",
             rep.get("total_ratings"),
             rep.get("average_rating") or "—",
@@ -423,18 +428,26 @@ def tool_get_my_profile(args):
     if not token:
         return NO_CREDS
     a = _request("GET", "/agents/me", token=token)
+    # KYC-Status (none | pending | approved | rejected) liegt an einem eigenen Endpoint.
+    try:
+        kyc = (_request("GET", "/kyc/status", token=token) or {}).get("kyc_status") or "unbekannt"
+    except ApiError:
+        kyc = "unbekannt"
     return (
         "Mein Suuq.Market Profil\n"
         "Name: {}\n"
         "ID: {}\n"
         "Reputation: {}/5.0\n"
         "Transaktionen: {}\n"
-        "Verifiziert: {}\n"
+        "KYC-Status: {}\n"
+        "{}: {}\n"
         "Wallet: {}\n"
         "Mitglied seit: {}".format(
             a.get("name"), a.get("id"),
             _fmt_score(a.get("reputation_score")),
             a.get("total_transactions"),
+            kyc,
+            BADGE_LABEL,
             "Ja" if a.get("verified") else "Nein",
             a.get("wallet_address") or "nicht gesetzt",
             a.get("created_at"),

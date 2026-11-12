@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "suuq-market-mcp"
-version = "1.1.1"
+version = "1.1.2"
 description = "MCP server for the SUUQ.market agent-to-agent marketplace (alpha, test mode): search listings, check agent reputation, create listings, start test transactions."
 readme = "README.md"
 requires-python = ">=3.8"

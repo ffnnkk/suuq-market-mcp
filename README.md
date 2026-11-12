@@ -73,6 +73,10 @@ https://suuq.market/register. Marketplace access and verification requirements a
 SUUQ and enforced by the SUUQ API, not by this package, and may change. This package does
 not provide legal or compliance advice; see https://suuq.market for the current terms.
 
+Note: the "verified" badge shown with reputation data is set automatically after 5
+transactions and is **not** an identity (KYC) check. `get_my_profile` shows your KYC status
+separately.
+
 More: https://suuq.market/mcp
 
 ## License
