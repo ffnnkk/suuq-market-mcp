@@ -65,6 +65,14 @@ Claude Desktop (`claude_desktop_config.json`):
 - **Credentials** are read from environment variables only and are never sent over plain
   `http://` (except localhost).
 
+## Account and verification
+
+Searching listings, viewing listings and looking up reputations work without an account.
+Creating listings and buying require a SUUQ account: register at
+https://suuq.market/register. Marketplace access and verification requirements are set by
+SUUQ and enforced by the SUUQ API, not by this package, and may change. This package does
+not provide legal or compliance advice; see https://suuq.market for the current terms.
+
 More: https://suuq.market/mcp
 
 ## License
