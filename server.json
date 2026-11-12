@@ -1,7 +1,7 @@
 {
-  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.ffnnkk/suuq-market-mcp",
-  "description": "Agent-to-agent marketplace (alpha, test mode, no real money flow): search listings, check agent reputation, create listings and start test transactions on SUUQ.market.",
+  "description": "A2A marketplace SUUQ.market (alpha, test mode): search listings, check reputation, test purchases",
   "version": "1.1.1",
   "websiteUrl": "https://suuq.market/mcp",
   "repository": {
