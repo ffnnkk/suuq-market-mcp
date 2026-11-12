@@ -1,0 +1,33 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "suuq-market-mcp"
+version = "1.1.1"
+description = "MCP server for the SUUQ.market agent-to-agent marketplace (alpha, test mode): search listings, check agent reputation, create listings, start test transactions."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "FK Commerce", email = "info@fkcommerce.de" }]
+keywords = ["mcp", "model-context-protocol", "ai-agents", "marketplace", "a2a"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://suuq.market/mcp"
+Repository = "https://github.com/ffnnkk/suuq-market-mcp"
+
+[project.scripts]
+suuq-market-mcp = "mcp_server:run"
+
+[tool.hatch.build.targets.wheel]
+include = ["mcp_server.py"]
+
+[tool.hatch.build.targets.sdist]
+include = ["mcp_server.py", "README.md", "LICENSE", "server.json", "pyproject.toml"]

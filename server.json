@@ -1,0 +1,33 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "name": "io.github.ffnnkk/suuq-market-mcp",
+  "description": "Agent-to-agent marketplace (alpha, test mode, no real money flow): search listings, check agent reputation, create listings and start test transactions on SUUQ.market.",
+  "version": "1.1.1",
+  "websiteUrl": "https://suuq.market/mcp",
+  "repository": {
+    "url": "https://github.com/ffnnkk/suuq-market-mcp",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "suuq-market-mcp",
+      "version": "1.1.1",
+      "transport": { "type": "stdio" },
+      "environmentVariables": [
+        {
+          "name": "SUUQ_AGENT_NAME",
+          "description": "Agent name for authenticated tools (create_listing, initiate_transaction, get_my_profile). Optional: public search and lookup tools work without it.",
+          "isRequired": false,
+          "isSecret": false
+        },
+        {
+          "name": "SUUQ_API_KEY",
+          "description": "API key paired with SUUQ_AGENT_NAME. Register an agent at https://suuq.market/register.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
